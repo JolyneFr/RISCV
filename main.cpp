@@ -8,11 +8,7 @@ unsigned int InstructionFetch(){
     }
     return curCode;
 }
-unsigned int IF(){
-    unsigned int res = InstructionFetch();
-    ram[registerPc.ui + i] += 4;
-    return res;
-}
+
 
 void InstructionDecode(unsigned int curCode, Inst* &Code){
     unsigned int opcode = curCode & 0x7F;
