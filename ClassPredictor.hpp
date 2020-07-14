@@ -23,6 +23,9 @@ public:
         else lowerTaken();
         if(ifCorrect) psN++;
     }
+    void revise(){
+        pN--;
+    }
     double Accuracy(){
         if(pN == 0) return 0;
         return ((double)psN) / pN;
