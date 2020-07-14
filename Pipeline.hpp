@@ -12,6 +12,7 @@ buffer_MEM_WB MEM_WB;
 
 bimodalPredictor pred;
 int memCounter = -1;
+
 void WB(){
     if(memCounter < 0){
         Inst* cur = MEM_WB.signalPacage;
@@ -214,13 +215,22 @@ bool ID(){
         ID_EXE.signalPacage = cur;
         if(cur){
             ID_EXE.T = cur->type();
-            //printf("%d %x %d\n", cur->type(), curCode, reg[18].ui);
         }else ID_EXE.T = NOP;
         ID_EXE.curPc = IF_ID.curPc;
     }else{
         ID_EXE.signalPacage = nullptr;
         ID_EXE.T = NOP;
         ID_EXE.curPc = IF_ID.curPc;
+        if(cur){
+            switch(cur->type()){
+                case BEQ:
+                case BNE:
+                case BLT:
+                case BGE:
+                case BLTU:
+                case BGEU:pred.revise();break;
+            }
+        }
     }
     return ifstall;
 }
