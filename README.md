@@ -1,1 +1,1 @@
-WORST
+RISCV IS A SHIT MOUNTAIN!!!!!!!!!!!!!!!!!!!!!!!
