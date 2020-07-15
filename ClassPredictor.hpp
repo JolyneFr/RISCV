@@ -3,24 +3,26 @@
 
 class bimodalPredictor{
 private:
-    unsigned int status;
+    unsigned int status[32];
     unsigned int pN;
     unsigned int psN;
-    void higherTaken(){
-        if(status < 3) status++;
+    void higherTaken(int cur){
+        if(status[cur] < 3) status[cur]++;
     }
-    void lowerTaken(){
-        if(status > 0) status--;
+    void lowerTaken(int cur){
+        if(status[cur] > 0) status[cur]--;
     }
 public:
-    bimodalPredictor():status(1), pN(0), psN(0){}
-    bool ifTake(){
-        pN++;
-        return status / 2;
+    bimodalPredictor(){
+        for(int i = 0; i < 32; i++) status[i] = 0;
     }
-    void judge(bool ifJump, bool ifCorrect){
-        if(ifJump) higherTaken();
-        else lowerTaken();
+    bool ifTake(unsigned int curPc){
+        pN++;
+        return status[curPc % 32] / 2;
+    }
+    void judge(bool ifJump, bool ifCorrect, unsigned int curPc){
+        if(ifJump) higherTaken(curPc % 32);
+        else lowerTaken(curPc % 32);
         if(ifCorrect) psN++;
     }
     void revise(){

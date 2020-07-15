@@ -98,7 +98,7 @@ void EXE(){
                     IF_ID.code = 0;
                     IF_ID.curPc = 0;
                 }else isCorrect = true;
-                pred.judge(cur->ifBranch, isCorrect);
+                pred.judge(cur->ifBranch, isCorrect, ID_EXE.curPc);
             }
         }
         switch(ID_EXE.T){
@@ -202,7 +202,7 @@ bool ID(){
             case BLTU:
             case BGEU:{
                 ID_EXE.isBranch = true;
-                bool J = pred.ifTake();
+                bool J = pred.ifTake(IF_ID.curPc);
                 ID_EXE.predictedJump = J;
                 if(J){
                     cur->straightJump(IF_ID.curPc);
