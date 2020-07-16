@@ -1,9 +1,10 @@
 #ifndef ClassPredictor
 #define ClassPredictor
 
-class bimodalPredictor{
+class Predictor{
 private:
-    unsigned int status[32];
+    unsigned int status[16];
+    unsigned int hist = 0;
     unsigned int pN;
     unsigned int psN;
     void higherTaken(int cur){
@@ -13,16 +14,17 @@ private:
         if(status[cur] > 0) status[cur]--;
     }
 public:
-    bimodalPredictor(){
-        for(int i = 0; i < 32; i++) status[i] = 0;
+    Predictor(){
+        for(int i = 0; i < 16; i++) status[i] = 0;
     }
     bool ifTake(unsigned int curPc){
         pN++;
-        return status[curPc % 32] / 2;
+        return status[hist] / 2;
     }
     void judge(bool ifJump, bool ifCorrect, unsigned int curPc){
-        if(ifJump) higherTaken(curPc % 32);
-        else lowerTaken(curPc % 32);
+        if(ifJump) higherTaken(hist);
+        else lowerTaken(hist);
+        hist = ((hist << 1) + ifJump) & 0xF;
         if(ifCorrect) psN++;
     }
     void revise(){
