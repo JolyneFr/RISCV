@@ -10,7 +10,7 @@ buffer_ID_EXE ID_EXE;
 buffer_EXE_MEM EXE_MEM;
 buffer_MEM_WB MEM_WB;
 
-bimodalPredictor pred;
+Predictor pred;
 int memCounter = -1;
 
 void WB(){
