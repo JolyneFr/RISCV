@@ -19,6 +19,6 @@ int main(){
         IF();
     }
     printf("%d\n", (reg[10].ui) & 255u);
-    printf("%f\n",pred.Accuracy());
+    //printf("%f\n",pred.Accuracy());
     return 0;
 }
