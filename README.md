@@ -1,1 +1,1 @@
-RISCV IS A SHIT MOUNTAIN!!!!!!!!!!!!!!!!!!!!!!!
+Very naive pipeline simulator for RISCV processor
